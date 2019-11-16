@@ -7,6 +7,24 @@
     <ToolCommandName>nano-api-scan</ToolCommandName>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageId>nano-api-scan</PackageId>
+    <Title>nano-api-scan</Title>
+    <!-- <PackageIconUrl>TODO</PackageIconUrl> -->
+    <Summary>A .NET Core tool to detect any Win32 APIs that are not available on Windows Nano Server.</Summary>
+    <Description>A .NET Core tool to detect any Win32 APIs that are not available on Windows Nano Server.</Description>
+    <!-- <PackageTags>TODO</PackageTags> -->
+    <Authors>Matthew Leibowitz</Authors>
+    <Owners>Matthew Leibowitz</Owners>
+    <Copyright>© Matthew Leibowitz.</Copyright>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <RepositoryUrl>https://github.com/mattleibow/nano-api-scan</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/mattleibow/nano-api-scan</PackageProjectUrl>
+    <PackageReleaseNotes>See: https://github.com/mattleibow/nano-api-scan/releases/v$(PackageVersion)</PackageReleaseNotes>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Mono.Options" Version="5.3.0.1" />
   </ItemGroup>
