@@ -1,0 +1,21 @@
+trigger:
+  - master
+
+pool:
+  name: 'Hosted Windows 2019 with VS2019'
+
+variables:
+  BASE_VERSION: 1.0.0
+  BUILD_NUMBER: $[counter(format('{0}_{1}', variables['BASE_VERSION'], variables['Build.SourceBranch']), 1)]
+  PACKAGE_VERSION: $(BASE_VERSION).$(BUILD_NUMBER)
+
+steps:
+  - task: UseDotNet@2
+    inputs:
+      version: 3.0.x
+      performMultiLevelLookup: true
+  - powershell: dotnet pack nano-api-scan -c Release -o output /p:Version=$(BASE_VERSION).0 /p:InformationalVersion=$(PACKAGE_VERSION) /p:PackageVersion=$(PACKAGE_VERSION)
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathToPublish: output
+      artifactName: nuget
