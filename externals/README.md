@@ -41,6 +41,5 @@ ERRORS:
   KERNEL32.dll
     GetStartupInfoA (Proc not found)
       Please use API GetStartupInfoW as substitution.
-
     SetHandleCount (Proc not found)
 ```
