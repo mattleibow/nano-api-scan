@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using Microsoft.NanoServer.ApiScan;
 using Mono.Options;
 
@@ -85,13 +87,20 @@ namespace NanoApiScan
             // copying forwarders
             // TODO
 
-            // run the scanner
             var current = Directory.GetCurrentDirectory();
             try
             {
+                // run the scanner
                 Directory.SetCurrentDirectory(temp);
                 apiScanner.Run();
-                return 0;
+
+                var type = typeof(ApiScanner);
+                var field = type.GetField("analyzedBinaries", BindingFlags.NonPublic | BindingFlags.Instance);
+                var analyzedBinaries = field.GetValue(apiScanner) as List<AnalyzedBinary>;
+
+                // make sure we have an error code if there are errors
+                var hasErrors = analyzedBinaries.Any(b => b.Imports.Count > 0);
+                return hasErrors ? 1 : 0;
             }
             catch (Exception ex)
             {
